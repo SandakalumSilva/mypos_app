@@ -2,32 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\AdminInterface;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+
+    protected $adminRepository;
+    public function __construct(AdminInterface $adminRepository)
+    {
+        $this->adminRepository = $adminRepository;
+    }
+
     public function adminDestroy(Request $request)
     {
-        Auth::guard('web')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect()->route('admin.logout.page');
+        return $this->adminRepository->adminDestroy($request);
     }
 
     public function adminLogoutPage()
     {
-        return view('admin.admin_logout');
+        return $this->adminRepository->adminLogoutPage();
     }
 
     public function adminProfile()
     {
-        $id = Auth::user()->id;
-        $adminData = User::find($id);
-        return view('admin.admin_profile_view',compact('adminData'));
+        return $this->adminRepository->adminProfile();
+    }
+
+    public function adminProfileStore(Request $request)
+    {
+        return $this->adminRepository->adminProfileStore($request);
+    }
+
+    public function changePassword(){
+        return $this->adminRepository->changePassword();
+    }
+
+    public function updatePassword(Request $request){
+        return $this->adminRepository->updatePassword($request);
     }
 }

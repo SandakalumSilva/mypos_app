@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Interfaces\AdminInterface;
+use App\Interfaces\Backend\EmployeeInterface;
+use App\Repositories\AdminRepository;
+use App\Repositories\Backend\EmployeeRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(AdminInterface::class, AdminRepository::class);
+        $this->app->bind(EmployeeInterface::class, EmployeeRepository::class);
     }
 
     /**
