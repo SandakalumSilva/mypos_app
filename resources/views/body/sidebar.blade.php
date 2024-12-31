@@ -42,16 +42,16 @@
                 <li>
                     <a href="#sidebarCrm" data-bs-toggle="collapse">
                         <i class="mdi mdi-account-multiple-outline"></i>
-                        <span> CRM </span>
+                        <span> Customer Manage </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarCrm">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="crm-dashboard.html">Dashboard</a>
+                                <a href="{{ route('all.customer') }}">All Customer</a>
                             </li>
                             <li>
-                                <a href="crm-contacts.html">Contacts</a>
+                                <a href="{{ route('add.customer') }}">Add Customer</a>
                             </li>
                         </ul>
                     </div>
@@ -60,23 +60,37 @@
                 <li>
                     <a href="#sidebarEmail" data-bs-toggle="collapse">
                         <i class="mdi mdi-email-multiple-outline"></i>
-                        <span> Email </span>
+                        <span> Supplier Manage </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarEmail">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="email-inbox.html">Inbox</a>
+                                <a href="{{ route('all.supplier') }}">All Supplier</a>
                             </li>
                             <li>
-                                <a href="email-read.html">Read Email</a>
+                                <a href="{{ route('add.supplier') }}">Add Supplier</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#salary" data-bs-toggle="collapse">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                        <span> Employee Salary </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="salary">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('add.advance.salary') }}">Add Advance Salary</a>
                             </li>
                             <li>
-                                <a href="email-compose.html">Compose Email</a>
+                                <a href="{{ route('all.advance.salary') }}">All Advance Salary</a>
                             </li>
-                            <li>
-                                <a href="email-templates.html">Email Templates</a>
-                            </li>
+
                         </ul>
                     </div>
                 </li>
