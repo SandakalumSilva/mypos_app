@@ -39,7 +39,23 @@ class SalaryController extends Controller
     {
         return $this->salaryRepository->advanceSalaryUpdate($request);
     }
-    public function deleteAdvanceSalary($id){
+    public function deleteAdvanceSalary($id)
+    {
         return $this->salaryRepository->deleteAdvanceSalary($id);
+    }
+
+    public function paySalary() {
+        return $this->salaryRepository->paySalary();
+    }
+
+    public function payNowSalary($id){
+        return  $this->salaryRepository->payNowSalary($id);
+    }
+    public function employeSalaryStore(Request $request){
+        return $this->salaryRepository->employeSalaryStore($request);
+    }
+
+    public function monthSalary(){
+        return $this->salaryRepository->monthSalary();
     }
 }

@@ -8,4 +8,8 @@ interface SalaryInterface{
     public function editAdvanceSalary($id);
     public function advanceSalaryUpdate($request);
     public function deleteAdvanceSalary($id);
+    public function paySalary();
+    public function payNowSalary($id);
+    public function employeSalaryStore($request);
+    public function monthSalary();
 }
