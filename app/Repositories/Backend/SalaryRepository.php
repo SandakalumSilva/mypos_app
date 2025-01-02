@@ -5,6 +5,7 @@ namespace App\Repositories\Backend;
 use App\Interfaces\Backend\SalaryInterface;
 use App\Models\AdvanceSalary;
 use App\Models\Employee;
+use App\Models\PaySalary;
 use Carbon\Carbon;
 
 class SalaryRepository implements SalaryInterface
@@ -96,5 +97,44 @@ class SalaryRepository implements SalaryInterface
         );
 
         return redirect()->route('all.advance.salary')->with($notification);
+    }
+
+    public function paySalary()
+    {
+        $employees = Employee::latest()->get();
+        return view('backend.salary.pay_salary', compact('employees'));
+    }
+
+    public function payNowSalary($id)
+    {
+        $paySalary = Employee::findOrFail($id);
+        return view('backend.salary.paid_salary', compact('paySalary'));
+    }
+
+    public function employeSalaryStore($request)
+    {
+        $employeId = $request->id;
+
+        PaySalary::insert([
+            'employee_id' => $employeId,
+            'salary_month' =>  $request->month,
+            'paid_amount' => $request->paid_amount,
+            'advance_salary' => $request->advance_salary,
+            'due_salary' => $request->due_salary,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Employee Salary Paid Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('pay.salary')->with($notification);
+    }
+
+    public function monthSalary()
+    {
+        $paidSalary = PaySalary::latest()->get();
+        return view('backend.salary.month_salary', compact('paidSalary'));
     }
 }
